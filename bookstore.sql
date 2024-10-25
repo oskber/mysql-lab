@@ -3,41 +3,46 @@
 DROP DATABASE IF EXISTS bookstore;
 CREATE DATABASE bookstore;
 USE bookstore;
+DROP TABLE IF EXISTS author;
+DROP TABLE IF EXISTS language;
+DROP TABLE IF EXISTS book;
+DROP TABLE IF EXISTS bookstore;
+DROP TABLE IF EXISTS inventory;
 
 CREATE TABLE author
 (
     id         INT PRIMARY KEY AUTO_INCREMENT,
-    first_name VARCHAR(255),
-    last_name  VARCHAR(255),
-    birth_date DATE
+    first_name VARCHAR(255) NOT NULL,
+    last_name  VARCHAR(255) NOT NULL,
+    birth_date DATE NOT NULL
 );
 CREATE TABLE language
 (
     id   INT PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR(255)
+    name VARCHAR(255) NOT NULL
 );
 CREATE TABLE book
 (
     isbn             VARCHAR(13) PRIMARY KEY,
-    title            VARCHAR(255),
-    language_id      INT,
-    price            DECIMAL(10, 2),
-    publication_date DATE,
-    author_id        INT,
+    title            VARCHAR(255) NOT NULL,
+    language_id      INT NOT NULL,
+    price            DECIMAL(10, 2) NOT NULL,
+    publication_date DATE NOT NULL,
+    author_id        INT NOT NULL,
     FOREIGN KEY (author_id) REFERENCES author (id),
     FOREIGN KEY (language_id) REFERENCES language (id)
 );
 CREATE TABLE bookstore
 (
     id   INT PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR(255),
-    city VARCHAR(255)
+    name VARCHAR(255) NOT NULL,
+    city VARCHAR(255) NOT NULL
 );
 CREATE TABLE inventory
 (
-    store_id INT,
-    isbn     VARCHAR(13),
-    amount   INT,
+    store_id INT NOT NULL,
+    isbn     VARCHAR(13) NOT NULL,
+    amount   INT NOT NULL,
     PRIMARY KEY (store_id, isbn),
     FOREIGN KEY (store_id) REFERENCES bookstore (id),
     FOREIGN KEY (isbn) REFERENCES book (isbn)

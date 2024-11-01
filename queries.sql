@@ -9,8 +9,8 @@ CREATE TABLE successful_mission AS SELECT * FROM moon_mission WHERE outcome = 'S
 ALTER TABLE successful_mission MODIFY COLUMN mission_id INT PRIMARY KEY AUTO_INCREMENT;
 
 -- 3.
-UPDATE moon_mission SET operator = TRIM(REPLACE(operator, ' ', '')) WHERE operator LIKE '% %';;
-UPDATE successful_mission SET operator = TRIM(REPLACE(operator, ' ', '')) WHERE operator LIKE '% %';;
+UPDATE moon_mission SET operator = TRIM(REPLACE(operator, ' ', '')) WHERE operator LIKE '% %';
+UPDATE successful_mission SET operator = TRIM(REPLACE(operator, ' ', '')) WHERE operator LIKE '% %';
 
 -- 4.
 DELETE FROM successful_mission WHERE launch_date > '2010-01-01';
